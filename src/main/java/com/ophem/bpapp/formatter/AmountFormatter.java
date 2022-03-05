@@ -30,17 +30,20 @@ public class AmountFormatter implements Formatter<Amount> {
 		
 		Amount amount = new Amount();
 
-//		amount.setAmount(digit);
+		amount.setAmount(digit);
+		
+		System.out.println(split[1]);
+		String currencysymbol = split[1].toUpperCase().toString();
 
-		Currency symbol = Currency.getInstance(locale.UK);
+		Currency symbol = Currency.getInstance(currencysymbol);
 
-		System.out.println(symbol.toString());
+		System.out.println(symbol.getSymbol());
 
-		NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale.UK);
+		NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale(currencysymbol));
+//
+		System.out.println(currencyFormatter.getCurrency().getSymbol());
 
-		System.out.println(currencyFormatter.format(digit));
-
-		amount.setSymbol(currencyFormatter.format(digit));
+		amount.setSymbol(currencyFormatter.getCurrency().getSymbol());
 
 		return amount;
 	}
